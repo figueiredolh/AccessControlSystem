@@ -1,0 +1,19 @@
+<%- include('./includes/homeHead') %>
+  <div class="section-1">
+    <h1 class="section-1-titulo h1-admin">Editar Admin</h1>
+    <a class="section-1-link a-return" href="/admins">
+      <button>Voltar</button>
+    </a>
+  </div>
+  <form class="form-admin" action="/admins/edit/<%- admin._id %>" method="POST">
+    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+    <label for="nome">Nome</label>
+    <input value="<%= admin.nome %>" type="text" name="nome" id="nome" placeholder="Digite o nome do administrador">
+    <label for="email">Email</label>
+    <input value="<%= admin.email %>" type="email" name="email" id="email" placeholder="Digite um email válido">
+    <label for="senha">Senha</label>
+    <input type="password" name="senha" id="senha" placeholder="Digite uma senha">
+    <button type="submit" class="btn btn-primary">Editar</button>
+  <%- include('./includes/alertMessages') %>
+  </form>
+<%- include('./includes/homeFoot') %>

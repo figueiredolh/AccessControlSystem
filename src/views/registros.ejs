@@ -1,0 +1,63 @@
+<%- include('./includes/homeHead') %>
+<div class="section-1">
+  <h1 class="section-1-titulo">Registros</h1>
+</div>
+<% if(registros.length){ %>
+  <div class="container-table">
+    <table class="table">
+      <thead class="table-head">
+        <tr>
+          <th class="registro">Nome</th>
+          <th class="registro">Tag</th>
+          <th class="registro">Status</th>
+          <th class="registro">Data</th>
+          <th class="registro"></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <% registros.forEach(registro => { %>
+          <tr>
+            <td data-label="Nome" class="registro"><%= registro.nome %></td>
+            <td data-label="Tag" class="registro"><%= registro.tag %></td>
+            <td data-label="Status" class="registro"><%= registro.status %></td>
+            <td data-label="Data" class="registro"><%= registro.data %></td>
+            <td>
+              <a href="/registros/delete/<%- registro._id %>"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else{ %>
+    <p class="alert" style='font-size: 1.2rem;'>Ainda não existem registros</p>
+  <% } %>
+  <%- include('./includes/alertMessages') %>
+</div>
+<script>
+  //criação de websocket
+  const socket = new WebSocket('ws://localhost:3000/');
+  //callback para console
+  socket.addEventListener('open', function(){
+    console.log('Conectado ao servidor WS');
+    socket.send('Conectado');
+  });
+  //retorno de mensagens
+  socket.addEventListener('message', function(e){
+    let ultimoRegistro = JSON.parse(e.data);
+    //console.log(ultimoRegistro);
+    const $tbody = document.querySelector('.table-body');
+    const $tr = document.createElement('tr');
+    $tr.innerHTML = '<td data-label="Nome" class="registro">'+ ultimoRegistro.nome +'</td>'+
+                    '<td data-label="Tag" class="registro">'+ ultimoRegistro.tag +'</td>'+
+                    '<td data-label="Status" class="registro">'+ ultimoRegistro.status +'</td>'+
+                    '<td data-label="Data" class="registro">'+ ultimoRegistro.data +'</td>'+
+                    '<td> <a href="/registros/delete/'+ ultimoRegistro._id +'"><i class="fas fa-trash-alt"></i></a></td>';
+    $tr.classList.add('tr-ws');
+    $tbody.prepend($tr);
+    
+    const $containerTable = document.querySelector('.container-table');
+    const $divAlert = $containerTable.querySelector('.container-table .alert');
+    $containerTable.removeChild($divAlert);
+  });
+</script>
+<%- include('./includes/homeFoot') %>

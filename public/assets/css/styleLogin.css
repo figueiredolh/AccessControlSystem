@@ -1,0 +1,146 @@
+body{
+  margin: 0;
+  padding: 30px;
+  background-color: #fffffdea;
+  /* background-image: url("https://thumbs.dreamstime.com/b/teste-padr%C3%A3o-home-esperto-do-vetor-com-palavra-117715850.jpg"); */
+  /* background-blend-mode: soft-light; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.lateral{
+  display: none;
+}
+
+h1{
+  text-align: center;
+  font-size: 24px;
+  color: #383838;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+fieldset{
+  border: none;
+  background-color: #f2f9fd;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+label, input, button{
+  display: block;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+label, button{
+  font-size: 0.875rem;
+}
+
+input{
+  box-sizing: border-box;
+  margin: 5px 0px 20px 0px;
+  padding: 10px;
+  background-color: #E9F1FE;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 1px #38383842;
+  font-size: 14px;
+}
+
+input::placeholder{
+  font-style: italic;
+  color: #7389AB;
+}
+
+button{
+  box-sizing: border-box;
+  background-color: lightseagreen;
+  padding: 10px;
+  margin: 40px 0px 0px;
+  color: white;
+  font-weight: normal;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s all ease-in-out;
+}
+
+button:hover{
+  background-color: rgb(19, 104, 100);
+}
+
+@media screen and (min-width: 768px){
+  body{
+    flex-direction: row;
+    justify-content: unset;
+    align-items: unset;
+    padding: 0;
+  }
+
+  h1{
+    font-size: 36px;
+  }
+
+  .lateral{
+    display: block;
+    width: 25%;
+    background-color: #441344;
+    background-image: linear-gradient(45deg, black, transparent);
+    height: 100vh;
+  }
+
+  .conteudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  input, label, button{
+    font-size: 1rem;
+  }
+
+  button{
+    padding: 15px;
+  }
+
+  .div-fieldset{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .div-fieldset fieldset{
+    width: 92%;
+    padding: 40px;
+  }
+}
+
+/* Mensagens de alerta */
+
+.alert{
+  text-align: center;
+  margin-top: 15px;
+}
+
+.alert-danger{
+  color: red;
+}
+
+.alert-success{
+  color: green;
+}

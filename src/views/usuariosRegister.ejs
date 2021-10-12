@@ -1,0 +1,18 @@
+<%- include('./includes/homeHead') %>
+    <div class="section-1">
+      <h1 class="section-1-titulo h1-admin">Cadastrar Usuário RFID</h1>
+      <a class="section-1-link a-return" href="/usuarios">
+        <button>Voltar</button>
+      </a>
+    </div>
+    <form class="form-admin" action="/usuarios/register" method="POST">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" placeholder="Digite o nome do usuário RFID">
+      <label for="tag">Tag</label>
+      <input type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário">
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+      <%- include('./includes/alertMessages') %>
+  </form>
+<%- include('./includes/homeFoot') %>
+

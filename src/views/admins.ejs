@@ -1,0 +1,38 @@
+<%- include('./includes/homeHead') %>
+<div class="section-1">
+  <h1 class="section-1-titulo">Admins</h1>
+  <a class="section-1-link" href="/admins/register">
+    <button>+ Admin</button>
+  </a>
+</div>
+<% if(admins.length){ %>
+<div class="container-table">
+  <table class="table">
+    <thead class="table-head">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <% admins.forEach(admin => { %>
+      <tr>
+        <td data-label="Nome"><%= admin.nome %></td>
+        <td data-label="Email"><%= admin.email %></td>
+        <td>
+          <a href="/admins/edit/<%- admin._id %>"><i class="fas fa-user-edit"></i></a>
+          <a href="/admins/delete/<%- admin._id %>"><i class="fas fa-trash-alt"></i></a>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% } else{ %>
+    <p style='text-align: center; font-weight: normal; margin-top: 40px;'>Ainda não existem administradores cadastrados</p>
+  <% } %>
+  <%- include('./includes/alertMessages') %>
+</div>
+<%- include('./includes/homeFoot') %>
+
+  

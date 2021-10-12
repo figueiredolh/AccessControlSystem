@@ -1,0 +1,38 @@
+<%- include('./includes/homeHead') %>
+<div class="section-1">
+  <h1 class="section-1-titulo">Usuários RFID</h1>
+  <a class="section-1-link" href="/usuarios/register">
+    <button>+ Usuário</button>
+  </a>
+</div>
+<% if(usuarios.length){ %>
+  <div class="container-table">
+    <table class="table">
+      <thead class="table-head">
+        <tr>
+          <th>Nome</th>
+          <th>Tag</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <% usuarios.forEach(usuario => { %>
+          <tr>
+            <td data-label="Nome"><%= usuario.nome %></td>
+            <td data-label="Tag"><%= usuario.tag %></td>
+            <td>
+              <a href="/usuarios/edit/<%- usuario._id %>"><i class="fas fa-user-edit"></i></a>
+              <a href="/usuarios/delete/<%- usuario._id %>"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else{ %>
+    <p class="alert" style='font-size: 1.2rem;'>Ainda não existem usuários cadastrados</p>
+  <% } %>
+  <%- include('./includes/alertMessages') %>
+</div>
+<%- include('./includes/homeFoot') %>
+
+  

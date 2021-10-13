@@ -281,7 +281,55 @@ button{
   background-color: rgb(24, 131, 125);
 }
 
-/* Desktop */
+/* Abertura Remota - button */
+.abertura{
+  flex-direction: column;
+}
+
+#div-btnAbertura{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+#div-btnAbertura sup{
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+#div-btnAbertura a{
+  display: block;
+}
+
+#div-btnAbertura button{
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  padding: 0;
+  outline: 4px solid white;
+  outline-offset: -8px;
+  background-image: linear-gradient(45deg, lightseagreen, #A01C73);
+  transition: .4s transform;
+  position: relative;
+  cursor: inherit;
+}
+
+#div-btnAbertura button:hover{
+  transform: scale(1.1);
+}
+
+#div-btnAbertura button div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+}
+
+/* ---------- Desktop ----------- */
 
 @media screen and (min-width: 768px){
   .container{

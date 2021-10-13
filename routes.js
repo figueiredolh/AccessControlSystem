@@ -3,6 +3,7 @@ const route = express.Router();
 
 //importando controllers
 const home = require('./src/controllers/homeController');
+const abertura = require('./src/controllers/aberturaController');
 const admin = require('./src/controllers/adminController');
 const usuario = require('./src/controllers/usuarioController');
 const registro = require('./src/controllers/registroController');
@@ -17,6 +18,7 @@ route.post('/login', admin.postLoginAdmin);
 
 //Rotas Home - index.ejs
 route.get('/', home.redirectHome);
+route.get('/abertura', logado, abertura.getAbertura);
 route.get('/usuarios', logado, usuario.getUsuario); //posteriormente trocar para usuario.getHome - importa getHome para usuariocontroller
 route.get('/usuarios/register', logado, usuario.getCriarUsuario);
 route.post('/usuarios/register', logado, usuario.postCriarUsuario);
@@ -28,7 +30,6 @@ route.get('/registros/delete/:id', logado, registro.deleteRegistro);
 //route.get('/horarios', logado, horario.getHorarios);
 //route.get('/visitantes');
 //route.post('/visitantes/register');
-//route.get('/abertura');
 route.get('/admins', logado, admin.getAdmin);
 route.get('/admins/register', logado, admin.getCriarAdmin);
 route.post('/admins/register', logado, admin.postCriarAdmin);

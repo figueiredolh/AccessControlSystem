@@ -8,5 +8,5 @@ exports.homeLogout = (req, res) => {
 }
 
 exports.redirectHome = (req,res) =>{
-  res.redirect('/usuarios');
+  res.redirect('/abertura');
 }

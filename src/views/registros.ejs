@@ -31,8 +31,8 @@
   <% } else{ %>
     <p class="alert" style='font-size: 1.2rem;'>Ainda não existem registros</p>
   <% } %>
-  <%- include('./includes/alertMessages') %>
 </div>
+<%- include('./includes/alertMessages') %>
 <script>
   //criação de websocket
   const socket = new WebSocket('ws://localhost:3000/');
@@ -55,9 +55,9 @@
     $tr.classList.add('tr-ws');
     $tbody.prepend($tr);
     
-    const $containerTable = document.querySelector('.container-table');
-    const $divAlert = $containerTable.querySelector('.container-table .alert');
-    $containerTable.removeChild($divAlert);
+    const $section = document.querySelector('.section');
+    const $divAlert = $section.querySelector('.alert');
+    if($divAlert) $section.removeChild($divAlert);
   });
 </script>
 <%- include('./includes/homeFoot') %>

@@ -19,7 +19,7 @@ route.post('/login', admin.postLoginAdmin);
 //Rotas Home - index.ejs
 route.get('/', home.redirectHome);
 route.get('/abertura', logado, abertura.getAbertura);
-route.get('/usuarios', logado, usuario.getUsuario); //posteriormente trocar para usuario.getHome - importa getHome para usuariocontroller
+route.get('/usuarios', logado, usuario.getUsuario);
 route.get('/usuarios/register', logado, usuario.getCriarUsuario);
 route.post('/usuarios/register', logado, usuario.postCriarUsuario);
 route.get('/usuarios/edit/:id', logado, usuario.getEditUsuario);

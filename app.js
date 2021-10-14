@@ -22,6 +22,7 @@ const expressWs = require('express-ws')(app);
 let appWs = expressWs.app;
 let aWss = expressWs.getWss('/');
 
+//rota websockets para registros
 appWs.ws('/', function(ws, req) {
   console.log('Servidor websocket conectado');
 
@@ -35,6 +36,27 @@ let wsBroadcast = (obj)=>{
     client.send(JSON.stringify(obj));
   });
 }
+
+//rota websockets para abertura remota
+appWs.ws('/abertura', function(ws, req) {
+  console.log('Servidor websocket conectado');
+  
+  ws.onmessage = function(msg) {
+    console.log('Mensagem do client: ' + msg.data);
+    if(msg.data === "OK") wsBroadcast_ab("OFF");
+  };
+});
+
+let wsBroadcast_ab = (str)=>{
+  aWss.clients.forEach(function (client) {
+    client.send(str);
+  });
+}
+
+app.post('/abertura', function(req, res){
+  wsBroadcast_ab("ON");
+  res.redirect('back');
+});
 
 const Usuario = require('./src/models/UsuarioModel');
 const Registro = require('./src/models/RegistroModel');

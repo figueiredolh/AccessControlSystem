@@ -24,10 +24,10 @@ let aWss = expressWs.getWss('/');
 
 //rota websockets para registros
 appWs.ws('/', function(ws, req) {
-  console.log('Servidor websocket conectado');
+  console.log('Websocket aberto em registro.ejs');
 
   ws.onmessage = function(msg) {
-    console.log('Mensagem do client: ' + msg.data);
+    console.log('Mensagem de registro.ejs: ' + msg.data);
   };
 });
 

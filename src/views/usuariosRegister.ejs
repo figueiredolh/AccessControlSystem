@@ -12,7 +12,17 @@
       <label for="tag">Tag</label>
       <input type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário">
       <button type="submit" class="btn btn-primary">Cadastrar</button>
-      <%- include('./includes/alertMessages') %>
-  </form>
+    </form>
+    <%- include('./includes/alertMessages') %>
+    <script src="/assets/js/formScript.js"></script>
+    <script>
+      let validaForm = new formValidar({
+        form: '.form-admin',
+        inputs:{
+          nome: '#nome',
+          tag: '#tag'
+        }
+      })
+    </script>
 <%- include('./includes/homeFoot') %>
 

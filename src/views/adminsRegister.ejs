@@ -13,8 +13,19 @@
       <input type="email" name="email" id="email" placeholder="Digite um email válido">
       <label for="senha">Senha</label>
       <input type="password" name="senha" id="senha" placeholder="Digite uma senha">
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
     <%- include('./includes/alertMessages') %>
-  </form>
+    <script src="/assets/js/formScript.js"></script>
+    <script>
+      let validaForm = new formValidar({
+        form: '.form-admin',
+        inputs:{
+          nome: '#nome',
+          email: '#email',
+          senha: '#senha'
+        }
+      })
+    </script>
 <%- include('./includes/homeFoot') %>
 

@@ -47,16 +47,16 @@ appWs.ws('/abertura', function(ws, req) {
   };
 });
 
+app.post('/abertura', function(req, res){
+  wsBroadcast_ab("ON");
+  res.redirect('back');
+});
+
 let wsBroadcast_ab = (str)=>{
   aWss.clients.forEach(function (client) {
     client.send(str);
   });
 }
-
-app.post('/abertura', function(req, res){
-  wsBroadcast_ab("ON");
-  res.redirect('back');
-});
 
 const Usuario = require('./src/models/UsuarioModel');
 const Registro = require('./src/models/RegistroModel');

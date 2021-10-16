@@ -7,6 +7,7 @@ const abertura = require('./src/controllers/aberturaController');
 const admin = require('./src/controllers/adminController');
 const usuario = require('./src/controllers/usuarioController');
 const registro = require('./src/controllers/registroController');
+const horario = require('./src/controllers/horarioController');
 const {logado} = require('./src/middlewares/middlewaresGlobais');
 /* const esp32 = require('./src/controllers/esp32Controller') */
 
@@ -27,7 +28,8 @@ route.post('/usuarios/edit/:id', logado, usuario.postEditUsuario);
 route.get('/usuarios/delete/:id', logado, usuario.deleteUsuario);
 route.get('/registros', logado, registro.getRegistro);
 route.get('/registros/delete/:id', logado, registro.deleteRegistro);
-//route.get('/horarios', logado, horario.getHorarios);
+route.get('/horarios', logado, horario.getHorario);
+route.get('/horarios/register', logado, horario.getCriarHorario);
 //route.get('/visitantes');
 //route.post('/visitantes/register');
 route.get('/admins', logado, admin.getAdmin);

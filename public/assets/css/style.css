@@ -125,7 +125,6 @@ button{
 .table-body td::before{
   content: attr(data-label);
   display: block;
-  width: 15%;
   margin-right: 5%;
   font-weight: bold;
 }
@@ -426,6 +425,11 @@ button{
     padding: 15px;
     box-sizing: border-box;
     width: 40%;
+  }
+
+  /* Largura somente para horários de acesso */
+  .w-28 th, .w-28 td{
+    width: 28%
   }
 
   .table-head .registro, .table-body .registro{

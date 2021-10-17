@@ -1,0 +1,63 @@
+<%- include('./includes/homeHead') %>
+<div class="section-1">
+  <h1 class="section-1-titulo">Horários de Acesso</h1>
+  <a class="section-1-link" href="/horarios/register">
+    <button>+ Horário</button>
+  </a>
+</div>
+<% if(horarios.length){ %>
+  <div class="container-table">
+    <table class="table">
+      <thead class="table-head">
+        <tr>
+          <th>Nome</th>
+          <th>Tag</th>
+          <th>Horário Permitido</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <% horarios.forEach(horario => { %>
+          <% for(let propriedade in horario){ %>
+            <% if(horario[propriedade] === '0'){ %>
+              <% horario[propriedade] = 'Domingo'; %>
+            <% } %>
+            <% if(horario[propriedade] === '1'){ %>
+              <% horario[propriedade] = 'Segunda'; %>
+            <% } %>
+            <% if(horario[propriedade] === '2'){ %>
+              <% horario[propriedade] = 'Terça'; %>
+            <% } %>
+            <% if(horario[propriedade] === '3'){ %>
+              <% horario[propriedade] = 'Quarta'; %>
+            <% } %>
+            <% if(horario[propriedade] === '4'){ %>
+              <% horario[propriedade] = 'Quinta'; %>
+            <% } %>
+            <% if(horario[propriedade] === '5'){ %>
+              <% horario[propriedade] = 'Sexta'; %>
+            <% } %>
+            <% if(horario[propriedade] === '6'){ %>
+              <% horario[propriedade] = 'Sábado'; %>
+            <% } %>
+          <% } %>
+          <tr>
+            <td data-label="Nome"><%= horario.nome %></td>
+            <td data-label="Tag"><%= horario.tag %></td>
+            <td data-label="Tag"><%= horario.diaEntrada + ' a ' + horario.diaSaida + ' entre ' + horario.horarioEntrada + ' e ' + horario.horarioSaida%></td>
+            <td>
+              <a href="/horarios/edit/<%- horario._id %>"><i class="fas fa-user-edit"></i></a>
+              <a href="/horarios/delete/<%- horario._id %>"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+<% } else{ %>
+  <p class="alert" style='font-size: 1rem;'>Ainda não existem horários cadastrados</p>
+<% } %>
+<%- include('./includes/alertMessages') %>
+<%- include('./includes/homeFoot') %>
+
+  

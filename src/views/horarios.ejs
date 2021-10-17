@@ -8,7 +8,7 @@
 <% if(horarios.length){ %>
   <div class="container-table">
     <table class="table">
-      <thead class="table-head">
+      <thead class="table-head w-28">
         <tr>
           <th>Nome</th>
           <th>Tag</th>
@@ -16,7 +16,7 @@
           <th></th>
         </tr>
       </thead>
-      <tbody class="table-body">
+      <tbody class="table-body w-28">
         <% horarios.forEach(horario => { %>
           <% for(let propriedade in horario){ %>
             <% if(horario[propriedade] === '0'){ %>
@@ -44,7 +44,7 @@
           <tr>
             <td data-label="Nome"><%= horario.nome %></td>
             <td data-label="Tag"><%= horario.tag %></td>
-            <td data-label="Tag"><%= horario.diaEntrada + ' a ' + horario.diaSaida + ' entre ' + horario.horarioEntrada + ' e ' + horario.horarioSaida%></td>
+            <td data-label="Horário Permitido"><%= horario.diaEntrada + ' a ' + horario.diaSaida + ', entre ' + horario.horarioEntrada + ' e ' + horario.horarioSaida%></td>
             <td>
               <a href="/horarios/edit/<%- horario._id %>"><i class="fas fa-user-edit"></i></a>
               <a href="/horarios/delete/<%- horario._id %>"><i class="fas fa-trash-alt"></i></a>

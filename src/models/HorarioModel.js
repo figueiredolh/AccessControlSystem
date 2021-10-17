@@ -42,19 +42,22 @@ class Horario{
 
   //criar horario
   async criarHorario(){
-      this.validar();
-      if(this.errors.length > 0) return;
-      //
-      await this.verificarHorarioCriado();
-      if(this.errors.length > 0) return; //verificação de erros de usuário da base de dados
+    this.validar();
+    if(this.errors.length > 0) return;
+    //
+    await this.verificarHorarioCriado();
+    if(this.errors.length > 0) return; //verificação de erros de usuário da base de dados
 
-      this.schedule = await HorarioModel.create(this.body); //Registro de usuário na base de dados
+    this.schedule = await HorarioModel.create(this.body); //Registro de usuário na base de dados
   }
 
   async verificarHorarioCriado(){
     try{
       if(await HorarioModel.findOne({tag: this.body.tag})){
         this.errors.push('Tag já cadastrada');
+      }
+      if(await mongoose.model('Usuario').findOne({tag: this.body.tag})){
+        this.errors.push('Tag já cadastrada em Usuários');
       }
     }
     catch(e){

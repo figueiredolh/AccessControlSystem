@@ -40,6 +40,9 @@ class Usuario{
       if(await UsuarioModel.findOne({tag: this.body.tag})){
         this.errors.push('Tag já cadastrada');
       }
+      if(await mongoose.model('Horario').findOne({tag: this.body.tag})){
+        this.errors.push('Tag já cadastrada em Horários de Acesso');
+      }
     }
     catch(e){
       console.log(e);

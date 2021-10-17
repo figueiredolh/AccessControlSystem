@@ -1,0 +1,69 @@
+<%- include('./includes/homeHead') %>
+    <div class="section-1">
+      <h1 class="section-1-titulo h1-admin">Cadastrar Horário</h1>
+      <a class="section-1-link a-return" href="/horarios">
+        <button>Voltar</button>
+      </a>
+    </div>
+    <form class="form-admin" action="/horarios/register" method="POST">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" placeholder="Digite o nome do usuário" required>
+      <label for="tag">Tag</label>
+      <input type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário" required>
+      <div class="container-dia">
+        <div>
+          <label for="diaEntrada">Dia de Entrada</label>
+          <select name="diaEntrada" id="diaEntrada" required>
+            <option value="" selected>Selecione um dia</option>
+            <option value="domingo">Domingo</option>
+            <option value="segunda">Segunda</option>
+            <option value="terca">Terça</option>
+            <option value="quarta">Quarta</option>
+            <option value="quinta">Quinta</option>
+            <option value="sexta">Sexta</option>
+            <option value="sabado">Sábado</option>
+          </select>
+        </div>
+        <div>
+          <label for="diaSaida">Dia de Saída</label>
+          <select name="diaSaida" id="diaSaida" required>
+            <option value="" selected>Selecione um dia</option>
+            <option value="domingo">Domingo</option>
+            <option value="segunda">Segunda</option>
+            <option value="terca">Terça</option>
+            <option value="quarta">Quarta</option>
+            <option value="quinta">Quinta</option>
+            <option value="sexta">Sexta</option>
+            <option value="sabado">Sábado</option>
+          </select>
+        </div>
+      </div>
+      <div class="container-horario">
+        <div>
+          <label for="horarioEntrada">Horário de Entrada</label>
+          <input type="time" name="horarioEntrada" id="horarioEntrada" required>
+        </div>
+        <div>
+          <label for="horarioSaida">Horário de Saída</label>
+          <input type="time" name="horarioSaida" id="horarioSaida" required>
+        </div>
+      </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+  </form>
+  <%- include('./includes/alertMessages') %>
+  <script src="/assets/js/formScript.js"></script>
+    <script>
+      let validaForm = new formValidar({
+        form: '.form-admin',
+        inputs:{
+          nome: '#nome',
+          tag: '#tag',
+          diaEntrada: '#diaEntrada',
+          diaSaida: '#diaSaida',
+          horarioEntrada: '#horarioEntrada',
+          horarioSaida: '#horarioSaida'
+        }
+      })
+    </script>
+<%- include('./includes/homeFoot') %>

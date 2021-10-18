@@ -32,6 +32,8 @@ button{
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
+  position: sticky;
+  top: 0;
 }
 
 /* .header.container{
@@ -356,8 +358,6 @@ button{
     justify-content: flex-end;
     background-color: #383838;
     height: 48px;
-    position: sticky;
-    top: 0;
   }
 
   .header > *{

@@ -1,16 +1,20 @@
 <%- include('./includes/homeHead') %>
     <div class="section-1">
-      <h1 class="section-1-titulo h1-admin">Cadastrar Horário</h1>
+      <h1 class="section-1-titulo h1-admin">Editar Horário</h1>
       <a class="section-1-link a-return" href="/horarios">
         <button>Voltar</button>
       </a>
     </div>
     <form class="form-admin" action="/horarios/edit/<%- horario._id %>"" method="POST">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-      <label for="nome">Nome</label>
-      <input value="<%= horario.nome %>" type="text" name="nome" id="nome" placeholder="Digite o nome do usuário" required>
-      <label for="tag">Tag</label>
-      <input value="<%= horario.tag %>" type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário" required>
+      <div class="container-nome">
+        <label for="nome">Nome</label>
+        <input value="<%= horario.nome %>" type="text" name="nome" id="nome" placeholder="Digite o nome do usuário" required>
+      </div>
+      <div class="container-tag">
+        <label for="tag">Tag</label>
+        <input value="<%= horario.tag %>" type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário" required>
+      </div>
       <div class="container-dia">
         <div>
           <label for="diaEntrada">Dia de Entrada</label>
@@ -38,6 +42,10 @@
             <option value="6">Sábado</option>
           </select>
         </div>
+      </div>
+      <div class="container-check">
+        <input type="checkbox" id="checkEveryday">
+        <label for="checkEveryday">Diariamente</label>
       </div>
       <div class="container-horario">
         <div>

@@ -7,10 +7,14 @@
     </div>
     <form class="form-admin" action="/usuarios/register" method="POST">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-      <label for="nome">Nome</label>
-      <input type="text" name="nome" id="nome" placeholder="Digite o nome do usuário RFID">
-      <label for="tag">Tag</label>
-      <input type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário">
+      <div class="container-nome">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" placeholder="Digite o nome do usuário RFID">
+      </div>
+      <div class="container-tag">
+        <label for="tag">Tag</label>
+        <input type="text" name="tag" id="tag" placeholder="Digite a tag RFID do usuário">
+      </div>
       <button type="submit">Cadastrar</button>
     </form>
     <%- include('./includes/alertMessages') %>

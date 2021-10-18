@@ -7,12 +7,18 @@
     </div>
     <form class="form-admin" action="/admins/register" method="POST">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-      <label for="nome">Nome</label>
-      <input type="text" name="nome" id="nome" placeholder="Digite o nome do administrador">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" placeholder="Digite um email válido">
-      <label for="senha">Senha</label>
-      <input type="password" name="senha" id="senha" placeholder="Digite uma senha">
+      <div class="container-nome">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" placeholder="Digite o nome do administrador">
+      </div>
+      <div class="container-email">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Digite um email válido">
+      </div>
+      <div class="container-senha">
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha" placeholder="Digite uma senha">
+      </div>
       <button type="submit">Cadastrar</button>
     </form>
     <%- include('./includes/alertMessages') %>

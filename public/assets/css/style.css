@@ -251,7 +251,6 @@ button{
   outline: none;
   border: none;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px 1px #38383842;
 }
 
 .form-admin input::placeholder{
@@ -265,7 +264,7 @@ button{
   display: block;
   width: 100%;
   padding: 15px 40px;
-  margin: 40px 0px 0px;
+  margin: 30px 0px 0px;
   color: white;
   outline: none;
   border: none;
@@ -330,21 +329,42 @@ button{
   width: 70px;
 }
 
-/* container-horario */
-.container-dia select, .container-horario select{
+/* select, input e containers */
+.form-admin select{
   display: block;
   width: 100%;
   height: 41px;
   box-sizing: border-box;
-  margin: 5px 0px 20px 0px;
   padding: 10px;
   background-color: #E9F1FE;
   outline: none;
   border: none;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px 1px #38383842;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
+}
+
+.form-admin input, .form-admin select{
+  margin: 10px 0px;
+}
+
+.container-check{
+  display: flex;
+  align-items: center;
+}
+
+.container-check label, .container-check input{
+  display: inline-block;
+  width: inherit;
+  margin: 5px 0px;
+}
+
+.container-check label{
+  margin-left: 5px;
+}
+
+.form-admin div[class^="container"]+div[class^="container"]:not(.container-check){
+  margin-top: 20px;
 }
 
 /* ---------- Desktop ----------- */
@@ -428,7 +448,7 @@ button{
 
   /* Largura somente para horários de acesso */
   .w-28 th, .w-28 td{
-    width: 28%
+    width: 28%;
   }
 
   .table-head .registro, .table-body .registro{
@@ -491,7 +511,7 @@ button{
     /* display: block */
     display: flex;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1.2rem;
     text-decoration: none;
     color: white;
     box-sizing: border-box;
@@ -504,6 +524,7 @@ button{
     margin-right: 10px;
     width: 20px;
     height: 18px;
+    text-align: center;
   }
 
   /* form-admin */
@@ -530,6 +551,7 @@ button{
   .container-dia div, .container-horario div{
     width: 48%;
   }
+
   /* ws */
   .tr-ws{
     animation-name: animarTr;

@@ -60,6 +60,8 @@ let wsBroadcast_ab = (str)=>{
 
 const Usuario = require('./src/models/UsuarioModel');
 const Registro = require('./src/models/RegistroModel');
+const Horario = require('./src/models/HorarioModel');
+
 app.post('/tag', async function(req, res){
   try{
     if(req.headers['user-agent'] !== 'ESP32HTTPClient' && req.headers['auth-key'] !== '3df456dgfjga5hdk74'){
@@ -67,31 +69,41 @@ app.post('/tag', async function(req, res){
     }
     let rfidUid = req.query.rfiduid;
     console.log(rfidUid);
+
     let rfidUser = new Usuario({tag: rfidUid});
+    let rfidUserHorario = new Horario({tag:rfidUid});
+
     let objBuscarTags = await rfidUser.buscarTags();
-    //console.log(objBuscarTags);
+    let objBuscarTagsHorario = await rfidUserHorario.buscarTags();
+
     let objRegistro = {
       nome: !!objBuscarTags ? objBuscarTags.nome : 'Sem identificação', 
       tag: rfidUid,
       status: !!objBuscarTags ? 'Autorizado' : 'Não autorizado',
       data: formatarData(new Date())
     }
-    //
+
+    let objRegistro2 = {
+      nome: !!objBuscarTagsHorario ? objBuscarTagsHorario.nome : 'Sem identificação', 
+      tag: rfidUid,
+      status: !!objBuscarTagsHorario && verificarHorario(objBuscarTagsHorario, new Date()) ? 'Autorizado' : 'Não autorizado',
+      data: formatarData(new Date())
+    }
+
     if(!objBuscarTags){
-      console.log('Usuário não encontrado');
-      //adicionar no BD em Registros - Não autorizado
-      let registro = new Registro(objRegistro);
+      let registro = new Registro(objRegistro2);
       await registro.criarRegistro();
-      //const registros = await registro.listarRegistros();
       wsBroadcast(registro.register);
+      if(objBuscarTagsHorario && verificarHorario(objBuscarTagsHorario, new Date())){
+        res.status('200').send('Autorizado');
+        return;
+      }
       res.status('401').send('Não autorizado');
       return;
     }
     console.log('Usuário encontrado');
-    //adicionar no BD em Registros - Autorizado/OK
     let registro = new Registro(objRegistro);
     await registro.criarRegistro();
-    //const registros = await registro.listarRegistros();
     wsBroadcast(registro.register);
     res.status(200).send('OK');
   }
@@ -109,6 +121,28 @@ function formatarData(data){
 
 function verificarDigito(metodoData){
   return (metodoData < 10 ? '0' + metodoData : metodoData);
+}
+
+function verificarHorario(obj, date){
+  let $horarioEntrada = obj.horarioEntrada.split(':');
+  let $horarioSaida = obj.horarioSaida.split(':');
+
+  let horarioEntrada = new Date(date.getFullYear(), date.getMonth(), date.getDate(), + $horarioEntrada[0], + $horarioEntrada[1]);
+  let horarioSaida = new Date(date.getFullYear(), date.getMonth(), date.getDate(), + $horarioSaida[0], + $horarioSaida[1]);
+
+  if(horarioEntrada.getTime() > horarioSaida.getTime()) {
+    if(date.getTime() < horarioSaida.getTime()){
+      horarioEntrada = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1, + $horarioEntrada[0], + $horarioEntrada[1]);
+    }
+    else{
+      horarioSaida = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1, + $horarioSaida[0], + $horarioSaida[1]);
+    }
+  }
+
+  let verificarDiaSemana = (obj.diaEntrada <= date.getDay()) && (date.getDay() <= obj.diaSaida);
+  let verificarHora = (horarioEntrada.getTime() <= date.getTime()) && (date.getTime() <= horarioSaida.getTime());
+
+  return verificarDiaSemana && verificarHora;
 }
 
 //ESP 32 - HTTP POST

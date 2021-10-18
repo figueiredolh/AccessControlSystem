@@ -129,9 +129,9 @@ class Horario{
     this.validar();
     if(this.errors.length > 0) return;
     //verificar se nome, email e senha permanecem inalterados
-    this.admin = await HorarioModel.findById(id);
-    if(this.admin.nome === this.body.nome && this.admin.tag === this.body.tag) return this.errors.push('Dados inalterados');
-    this.admin = await AdminModel.findOneAndUpdate(id, this.body, {new: true});
+    this.schedule = await HorarioModel.findById(id);
+    if(this.schedule.nome === this.body.nome && this.schedule.tag === this.body.tag && this.schedule.diaEntrada === this.body.diaEntrada && this.schedule.diaSaida === this.body.diaSaida && this.schedule.horarioEntrada === this.body.horarioEntrada && this.schedule.horarioSaida === this.body.horarioSaida) return this.errors.push('Dados inalterados');
+    this.schedule = await HorarioModel.findOneAndUpdate(id, this.body, {new: true});
   }
 
   /* Apagar Horario */

@@ -60,18 +60,19 @@
     <button type="submit" class="m-20">Cadastrar</button>
   </form>
   <%- include('./includes/alertMessages') %>
+  <script src="/assets/js/horarioScript.js"></script>
   <script src="/assets/js/formScript.js"></script>
-    <script>
-      let validaForm = new formValidar({
-        form: '.form-admin',
-        inputs:{
-          nome: '#nome',
-          tag: '#tag',
-          diaEntrada: '#diaEntrada',
-          diaSaida: '#diaSaida',
-          horarioEntrada: '#horarioEntrada',
-          horarioSaida: '#horarioSaida'
-        }
-      })
-    </script>
+  <script>
+    let validaForm = new formValidar({
+      form: '.form-admin',
+      inputs:{
+        nome: '#nome',
+        tag: '#tag',
+        diaEntrada: '#diaEntrada',
+        diaSaida: '#diaSaida',
+        horarioEntrada: '#horarioEntrada',
+        horarioSaida: '#horarioSaida'
+      }
+    })
+  </script>
 <%- include('./includes/homeFoot') %>

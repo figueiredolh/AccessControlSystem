@@ -304,8 +304,6 @@ button{
   height: 200px;
   border-radius: 50%;
   padding: 0;
-  outline: 4px solid white;
-  outline-offset: -8px;
   background-image: linear-gradient(45deg, lightseagreen, #A01C73);
   transition: .4s transform;
   position: relative;

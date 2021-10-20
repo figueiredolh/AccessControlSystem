@@ -26,7 +26,7 @@ button{
 .header{
   width: 100%;
   box-sizing: border-box;
-  background-color: #f2f9fd;
+  background-color: #FFFFFD;
   color: #383838;
   display: flex;
   justify-content: space-between;
@@ -34,6 +34,7 @@ button{
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 
 /* .header.container{
@@ -152,15 +153,23 @@ button{
 
 .menu-bar{
   position: fixed;
-  left: -150px; /*  */
+  left: -200px; /*  */
   top: 0;
   background-color: #A01C73;
   opacity: 0.98;
-  width: 150px;
+  width: 200px;
   height: 100vh;
   transition: .2s left ease-in-out;
   z-index: 10;
   overflow: auto;
+}
+
+.menu-bar li a i{
+  font-size: 0.875rem;
+  margin-right: 10px;
+  width: 20px;
+  height: 18px;
+  text-align: center;
 }
 
 .menu-bar.active{
@@ -220,6 +229,10 @@ button{
 
 .a-return button{
   background-color: red;
+}
+
+.section-1-link button, .a-return button{
+  border-radius: 15px;
 }
 
 .a-return button:hover{
@@ -364,6 +377,12 @@ button{
 .form-admin div[class^="container"]+div[class^="container"]:not(.container-check){
   margin-top: 20px;
 }
+
+/* Remover estilos nativos */
+
+/* .container-dia select, .container-check input, .container-horario input{
+  -webkit-appearance: none;
+} */
 
 /* ---------- Desktop ----------- */
 
@@ -549,6 +568,12 @@ button{
   .container-dia div, .container-horario div{
     width: 48%;
   }
+
+  /* Remover estilos nativos */
+
+  /* .container-dia select, .container-check input, .container-horario input{
+    -webkit-appearance: auto;
+  } */
 
   /* ws */
   .tr-ws{

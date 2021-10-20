@@ -5,19 +5,25 @@ const menubarBtnClose = document.querySelector('.menu-bar-btn');
 //Animação menu - mobile
 headerBtn.addEventListener('click', ativar);
 menubarBtnClose.addEventListener('click', desativar);
+menubarDiv.addEventListener('click', function(e){
+  e.stopPropagation();
+});
+document.addEventListener('click', desativar);
 
 //Remover eventListener e elemento do dom
 window.addEventListener('load', janela);
 window.addEventListener('resize', janela);
 
-function ativar(){
+function ativar(e){
   menubarDiv.classList.add('active');
   this.style.visibility = 'hidden';
+  e.stopPropagation();
 }
 
-function desativar(){
+function desativar(e){
   menubarDiv.classList.remove('active');
   headerBtn.style.visibility = 'visible';
+  e.stopPropagation();
 }
 
 function janela(){

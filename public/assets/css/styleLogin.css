@@ -14,8 +14,23 @@ body{
   overflow: hidden;
 }
 
+*{
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
 .lateral{
   display: none;
+}
+
+.conteudo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 h1{
@@ -26,12 +41,19 @@ h1{
   margin-bottom: 30px;
 }
 
+.div-fieldset{
+  width: 100%;
+}
+
 fieldset{
   border: none;
   background-color: #f2f9fd;
-  padding: 30px 20px;
+  /* padding: 30px 20px; */
   box-sizing: border-box;
   border-radius: 10px;
+  position: relative;
+  height: 18.75rem;
+  overflow: hidden;
 }
 
 label, input, button{
@@ -52,7 +74,7 @@ input{
   outline: none;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 input::placeholder{
@@ -71,11 +93,53 @@ button{
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: .3s all ease-in-out;
+  transition: .3s background ease-in-out;
 }
 
 button:hover{
   background-color: rgb(19, 104, 100);
+}
+
+#visitante{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-top: 2.5rem;
+  color: #441344;
+  transition: color .3s ease-in-out;
+  cursor: pointer;
+}
+
+#visitante i{
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+#visitante:hover{
+  color: #b9228e;
+}
+
+.div-fieldset-div{
+  position: absolute;
+  left: 100%;
+  opacity: 0;
+  top: 0;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  transition: all 0.25s ease;
+}
+
+.active{
+  opacity: 1;
+  left: 0;
+}
+
+#voltar{
+  display: inline-block;
+  margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px){
@@ -87,7 +151,7 @@ button:hover{
   }
 
   h1{
-    font-size: 36px;
+    font-size: 2rem;
   }
 
   .lateral{
@@ -99,17 +163,13 @@ button:hover{
   }
 
   .conteudo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 65%;
     max-width: 900px;
     margin: 0 auto;
   }
 
   input, label, button{
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   button{
@@ -123,9 +183,9 @@ button:hover{
     max-width: 800px;
     margin: 0 auto;
   }
+
   .div-fieldset fieldset{
     width: 92%;
-    padding: 40px;
   }
 }
 
@@ -134,6 +194,7 @@ button:hover{
 .alert{
   text-align: center;
   margin-top: 15px;
+  font-size: 0.875rem;
 }
 
 .alert-danger{

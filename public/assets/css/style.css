@@ -5,6 +5,11 @@ body{
   background-color: #FFFFFD;
 }
 
+*{
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
 ul{
   margin: 0;
   padding: 0;

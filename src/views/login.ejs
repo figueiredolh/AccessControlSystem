@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a125096efd.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -16,17 +17,32 @@
     <h1>Faça seu login na plataforma</h1>
     <div class="div-fieldset">
       <fieldset>
-        <form action="/login" method="POST">
-          <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-          <label for="usuario">Email</label>
-          <input type="text" id="usuario" name="email" placeholder="Digite seu email de usuário">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-          <button type="submit">Entrar</button>
-        </form>
-        <%- include('./includes/alertMessages') %>
+        <div class="div-fieldset-div active">
+          <form action="/login" method="POST">
+            <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+            <label for="usuario">Email</label>
+            <input type="text" id="usuario" name="email" placeholder="Digite seu email de usuário">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            <button type="submit">Entrar</button>
+          </form>
+        </div>
+        <div class="div-fieldset-div">
+          <a id="voltar">
+            <img src="/assets/img/back.svg" style="width: 25px;" alt="">
+          </a>
+          <form action="/visitante" method="POST">
+            <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+            <label for="usuario">Senha de Visitante</label>
+            <input type="text" id="usuario" name="visitante" placeholder="Digite a senha de visitante">
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
       </fieldset>
     </div>
+    <%- include('./includes/alertMessages') %>
+    <div id="alert-div"></div>
+    <a id="visitante"><span>Senha de visitante</span><i class="fas fa-angle-right"></i></a>
   </div>
   <script src="/assets/js/loginScript.js"></script>
 </body>

@@ -49,7 +49,9 @@ appWs.ws('/abertura', function(ws, req) {
 
 app.post('/abertura', function(req, res){
   wsBroadcast_ab("ON");
-  res.redirect('back');
+  /* res.redirect('back'); */
+  console.log(req.body.abrir);
+  res.status(200).send('OK');
 });
 
 let wsBroadcast_ab = (str)=>{

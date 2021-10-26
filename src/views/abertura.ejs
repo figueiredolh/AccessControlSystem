@@ -3,12 +3,26 @@
   <h1 class="section-1-titulo">Abertura Remota</h1>
   <div class="div-btnAbertura abertura">
     <small>Clique no botão abaixo para abrir o portão</small>
-    <form action="/abertura" method="POST">
+    <form id="form-abertura" action="/abertura" method="POST">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">
       <button type="submit" class="div-btnAbertura--btn"><div><img src="/assets/img/lock.svg" alt=""></div></button>
     </form>
   </div>
 </div>
+<script>
+  const formAbertura = document.querySelector('#form-abertura');
+  formAbertura.addEventListener('submit', function(e){
+    let data = new URLSearchParams();
+    data.append('abrir', 'Abrir');
+    fetch('/abertura', {
+      method: 'POST',
+      body: data
+    })
+    .then(response => response.text())
+    .then(text => console.log(text));
+    e.preventDefault();
+  });
+</script>
 <%- include('./includes/homeFoot') %>
 
   

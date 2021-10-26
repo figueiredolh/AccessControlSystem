@@ -1,0 +1,28 @@
+<%- include('./includes/homeHead') %>
+<div class="section-1 abertura">
+  <h1 class="section-1-titulo">Senha de Visitante</h1>
+  <div class="div-btnAbertura abertura visitante">
+    <small style="margin-bottom: 0;">Selecione um intervalo de tempo e clique em Gerar</small>
+    <div class="slider">
+      <div class="slider-min">
+        <button class="slider-min--up">-</button>
+        <button class="slider-min--down">+</button>
+        <div class="inner-slider" id="min"></div>
+      </div>
+        <span style="font-weight: bold;">:</span>
+      <div class="slider-sec">
+        <button class="slider-sec--up">-</button>
+        <button class="slider-sec--down">+</button>
+        <div class="inner-slider" id="sec"></div>
+      </div>
+    </div>
+    <form action="/visitante" method="POST">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="hidden" name="min" id="minutos" value="0">
+      <input type="hidden" name="sec" id="segundos" value="0">
+      <button type="submit" class="div-btnAbertura--btn">Gerar</button>
+    </form>
+  </div>
+</div>
+<script src="/assets/js/timerVisitante.js"></script>
+<%- include('./includes/homeFoot') %>

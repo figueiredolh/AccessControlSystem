@@ -303,20 +303,20 @@ button{
   flex-direction: column;
 }
 
-#div-btnAbertura{
+.div-btnAbertura{
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2rem auto;
 }
 
-#div-btnAbertura small{
+.div-btnAbertura small{
   margin: 0 auto;
   margin-bottom: 2rem;
   text-align: center;
 }
 
-#div-btnAbertura button{
+.div-btnAbertura--btn{
   display: block;
   width: 200px;
   height: 200px;
@@ -328,11 +328,11 @@ button{
   cursor: pointer;
 }
 
-#div-btnAbertura button:hover{
+.div-btnAbertura--btn:hover{
   transform: scale(1.1);
 }
 
-#div-btnAbertura button div{
+.div-btnAbertura--btn div{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -340,7 +340,7 @@ button{
   padding: 0;
 }
 
-#div-btnAbertura button div img{
+.div-btnAbertura--btn div img{
   display: block;
   width: 70px;
 }
@@ -382,6 +382,102 @@ button{
 .form-admin div[class^="container"]+div[class^="container"]:not(.container-check){
   margin-top: 20px;
 }
+
+/* Visitante */
+
+.visitante .div-btnAbertura--btn{
+  background-image: linear-gradient(45deg, #383838, #A01C73);
+  color: white;
+  width: 100px;
+  height: 100px;
+  margin: 2rem auto;
+  font-family: 'Poppins';
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.slider{
+  display: flex;
+  align-items: center;
+  margin: 2rem auto;
+  height: 120px;
+  width: 200px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.slider-min, .slider-sec{
+  display: flex;
+  align-items: center;
+  height: inherit;
+  width: 100%;
+  position: relative;
+}
+
+.slider-min--up, .slider-min--down, .slider-sec--up, .slider-sec--down{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 0;
+  margin: 1px;
+  transform: translateX(-50%);
+  color: black;
+  background: none;
+  cursor: pointer;
+}
+
+.slider-min--up, .slider-sec--up{
+  top: 0;
+}
+
+.inner-slider{
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  transition: transform 0.2s linear 0s;
+  color: #cccccc;
+}
+
+.inner-slider .active{
+  transform: scale(1.5);
+  transition: .5s transform linear;
+  color: #383838;
+}
+
+#min, #sec, .inner-slider div{
+  height: 48px;
+}
+
+/* #min{
+  transform: translate3d(0px, 720px, 0px);
+}
+
+#sec{
+  transform: translate3d(0px, 1416px, 0px);
+} */
+
+/* .visitante-div--time::-webkit-scrollbar {
+  width: 8px;
+}
+
+.visitante-div--time::-webkit-scrollbar-track{
+  background: #FFFFFD;
+}
+
+.visitante-div--time::-webkit-scrollbar-thumb {
+  background-color: #A01C73;
+}
+
+#min{
+  direction: rtl;
+} */
+
+/* #sec{
+  transform: translateY(24px);
+} */
 
 /* Remover estilos nativos */
 

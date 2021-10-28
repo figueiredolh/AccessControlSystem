@@ -22,12 +22,12 @@ for(let i = 0; i <=59; i++){
 const sliderMin = document.querySelector('.slider-min');
 let minMin = 0;
 const minArray = min.querySelectorAll('div');
-minArray[0].classList.add('active');
 let minAtual = 0;
 let minIndiceAtual = 0;
 const minBtnUp = sliderMin.querySelector('.slider-min--up');
 const minBtnDown = sliderMin.querySelector('.slider-min--down');
 const minInput = document.querySelector('#minutos');
+minArray[0].classList.add('active');
 
 minBtnUp.addEventListener('click', function(){
   minIndiceAtual -= 1;
@@ -71,12 +71,12 @@ minBtnDown.addEventListener('click', function(){
 const sliderSec = document.querySelector('.slider-sec');
 let secMin = 0;
 const secArray = sec.querySelectorAll('div');
-secArray[0].classList.add('active');
 let secAtual = 0;
 let secIndiceAtual = 0;
 const secBtnUp = sliderSec.querySelector('.slider-sec--up');
 const secBtnDown = sliderSec.querySelector('.slider-sec--down');
 const secInput = document.querySelector('#segundos');
+secArray[0].classList.add('active');
 
 secBtnUp.addEventListener('click', function(){
   secIndiceAtual -= 1;
@@ -115,3 +115,58 @@ secBtnDown.addEventListener('click', function(){
   secArray[secIndiceAtual].classList.add('active');
   secInput.value = secIndiceAtual;
 });
+
+/* senha */
+const formVisitante = document.querySelector('.form-visitante');
+const senhaInput = document.querySelector('#senha');
+const statusSenha = document.querySelector('.status--senha');
+const statusTempo = document.querySelector('.status--tempo');
+
+const slider = document.querySelector('.slider');
+const $status = document.querySelector('.status');
+
+fetch('/visitantes/api')
+.then(response => response.json())
+.then($json => {
+  console.log($json);
+  let objSenha = $json[0];
+  if(!objSenha) return;
+  statusSenha.textContent = objSenha.senha;
+  statusTempo.textContent = `${new Date(objSenha.expiraEm).getTime() - Date.now()}`;
+});
+
+formVisitante.addEventListener('submit', function(e){
+  gerarSenha();
+  mostrarTempo();
+  let data = new URLSearchParams();
+  data.append('min', minInput.value);
+  data.append('sec', secInput.value);
+  data.append('senha', senhaInput.value);
+
+  fetch('/visitantes/register', {
+    method: 'POST',
+    body: data
+  })
+  .then(response => response.json())
+  .then($json => console.log($json));
+
+  e.preventDefault();
+});
+
+function gerarSenha() {
+  let caracteres = "0123456789abcdefghijklmnopqrstuvwxyz!#*";
+  let senhaLength = 6;
+  let senha = "";
+
+  for (let i = 0; i < senhaLength; i++) {
+    let randomNumber = Math.floor(Math.random() * caracteres.length);
+    senha += caracteres.substring(randomNumber, randomNumber + 1);
+  }
+  statusSenha.textContent = senha;
+  senhaInput.value = senha;
+}
+
+function mostrarTempo(){
+  let tempo = new Date(minInput.value * 60 * 1000 + secInput.value * 1000).getTime();
+  statusTempo.textContent = tempo;
+}

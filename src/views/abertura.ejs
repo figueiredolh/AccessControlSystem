@@ -3,7 +3,7 @@
   <h1 class="section-1-titulo">Abertura Remota</h1>
   <div class="div-btnAbertura abertura">
     <small>Clique no botão abaixo para abrir o portão</small>
-    <form id="form-abertura" action="/abertura" method="POST">
+    <form id="form-abertura">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">
       <button type="submit" class="div-btnAbertura--btn"><div><img src="/assets/img/lock.svg" alt=""></div></button>
     </form>

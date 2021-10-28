@@ -63,6 +63,7 @@ let wsBroadcast_ab = (str)=>{
 const Usuario = require('./src/models/UsuarioModel');
 const Registro = require('./src/models/RegistroModel');
 const Horario = require('./src/models/HorarioModel');
+const Visitante = require('./src/models/VisitanteModel');
 
 app.post('/tag', async function(req, res){
   try{
@@ -114,6 +115,32 @@ app.post('/tag', async function(req, res){
   }
 }
 );
+
+//post para visitantes
+app.post('/visitantes/register', async function(req, res){
+  try {
+    let expira = new Date(Date.now() + req.body.min * 60 * 1000 + req.body.sec * 1000);
+    let $reqBody = {
+      senha: req.body.senha,
+      expiraEm: expira
+    };
+    const visitante = new Visitante($reqBody);
+    let buscaVisitante = await visitante.buscarVisitante();
+    if(buscaVisitante){
+      visitante.apagarVisitante(buscaVisitante);
+    }
+    await visitante.criarVisitante();
+    res.status('200').send(buscaVisitante);
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+app.get('/visitantes/api', async function(req, res){
+  const visitante = new Visitante();
+  let buscaVisitante = await visitante.buscarVisitante();
+  res.send(buscaVisitante);
+});
 
 function formatarData(data){
   let $data = verificarDigito(data.getDate()) + '/' + verificarDigito(data.getMonth()+1) + '/' + verificarDigito(data.getFullYear());

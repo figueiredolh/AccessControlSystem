@@ -16,10 +16,15 @@
         <div class="inner-slider" id="sec"></div>
       </div>
     </div>
-    <form action="/visitante" method="POST">
+    <div class="status">
+      <div class="status--senha"></div>
+      <div class="status--tempo"></div>
+    </div>
+    <form class="form-visitante">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">
       <input type="hidden" name="min" id="minutos" value="0">
       <input type="hidden" name="sec" id="segundos" value="0">
+      <input type="hidden" name="senha" id="senha">
       <button type="submit" class="div-btnAbertura--btn">Gerar</button>
     </form>
   </div>

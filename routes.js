@@ -36,7 +36,6 @@ route.get('/horarios/edit/:id', logado, horario.getEditHorario);
 route.post('/horarios/edit/:id', logado, horario.postEditHorario);
 route.get('/horarios/delete/:id', logado, horario.deleteHorario);
 route.get('/visitantes', logado, visitante.getVisitante);
-//route.post('/visitantes/register');
 route.get('/admins', logado, admin.getAdmin);
 route.get('/admins/register', logado, admin.getCriarAdmin);
 route.post('/admins/register', logado, admin.postCriarAdmin);

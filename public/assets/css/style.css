@@ -468,6 +468,23 @@ button{
   height: 48px;
 }
 
+/*  */
+
+.status{
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.status--senha{
+  font-size: 3rem;
+}
+
+.status--tempo{
+  font-size: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+
 /* #min{
   transform: translate3d(0px, 720px, 0px);
 }

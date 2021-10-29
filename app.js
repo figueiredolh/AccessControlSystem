@@ -22,6 +22,29 @@ const expressWs = require('express-ws')(app);
 let appWs = expressWs.app;
 let aWss = expressWs.getWss('/');
 
+//rota websockets para abertura remota (abertura remota e visitantes);
+appWs.ws('/abertura', function(ws, req) {
+  console.log('Websocket conectado em ESP32');
+  
+  ws.onmessage = function(msg) {
+    console.log('Mensagem do ESP: ' + msg.data);
+    if(msg.data === "OK") wsBroadcastESP("OFF");
+  };
+});
+
+app.post('/abertura', function(req, res){
+  wsBroadcastESP("ON");
+  /* res.redirect('back'); */
+  console.log(req.body.abrir);
+  res.status(200).send('OK');
+});
+
+let wsBroadcastESP = (str)=>{
+  aWss.clients.forEach(function (client) {
+    client.send(str);
+  });
+}
+
 //rota websockets para registros
 appWs.ws('/', function(ws, req) {
   console.log('Websocket aberto em registro.ejs');
@@ -34,29 +57,6 @@ appWs.ws('/', function(ws, req) {
 let wsBroadcast = (obj)=>{
   aWss.clients.forEach(function (client) {
     client.send(JSON.stringify(obj));
-  });
-}
-
-//rota websockets para abertura remota
-appWs.ws('/abertura', function(ws, req) {
-  console.log('Servidor websocket conectado');
-  
-  ws.onmessage = function(msg) {
-    console.log('Mensagem do client: ' + msg.data);
-    if(msg.data === "OK") wsBroadcast_ab("OFF");
-  };
-});
-
-app.post('/abertura', function(req, res){
-  wsBroadcast_ab("ON");
-  /* res.redirect('back'); */
-  console.log(req.body.abrir);
-  res.status(200).send('OK');
-});
-
-let wsBroadcast_ab = (str)=>{
-  aWss.clients.forEach(function (client) {
-    client.send(str);
   });
 }
 
@@ -117,6 +117,12 @@ app.post('/tag', async function(req, res){
 );
 
 //post para visitantes
+app.get('/visitantes/api', async function(req, res){
+  const visitante = new Visitante();
+  let buscaVisitante = await visitante.buscarVisitantes();
+  res.send(buscaVisitante);
+});
+
 app.post('/visitantes/register', async function(req, res){
   try {
     if(req.body.apagar === 'Apagar'){
@@ -133,17 +139,21 @@ app.post('/visitantes/register', async function(req, res){
     };
     const visitante = new Visitante($reqBody);
     await visitante.criarVisitante();
-    console.log(visitante.visitor);
     res.status('200').send(visitante.visitor);
   } catch (error) {
     console.log(error)
   }
 });
 
-app.get('/visitantes/api', async function(req, res){
-  const visitante = new Visitante();
-  let buscaVisitante = await visitante.buscarVisitantes();
-  res.send(buscaVisitante);
+app.post('/visitantes/enter', async function(req, res){
+  const visitante = new Visitante(req.body);
+  let senha = await visitante.buscarSenhaVisitante();
+  if(!senha){
+    res.status(401).redirect('back');
+    return;
+  }
+  wsBroadcastESP("ON");
+  res.status(200).redirect('back');
 });
 
 function formatarData(data){

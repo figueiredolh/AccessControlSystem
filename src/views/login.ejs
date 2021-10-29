@@ -31,10 +31,9 @@
           <a id="voltar">
             <img src="/assets/img/back.svg" style="width: 25px;" alt="">
           </a>
-          <form action="/visitante" method="POST">
-            <input type="hidden" name="_csrf" value="<%- csrfToken %>">
-            <label for="usuario">Senha de Visitante</label>
-            <input type="text" id="usuario" name="visitante" placeholder="Digite a senha de visitante">
+          <form action="/visitantes/enter" method="POST">
+            <label for="visitante">Senha de Visitante</label>
+            <input type="text" id="visitante" name="visitante" placeholder="Digite a senha de visitante" spellcheck="false">
             <button type="submit" style="margin-top: 60px;">Enviar</button>
           </form>
         </div>

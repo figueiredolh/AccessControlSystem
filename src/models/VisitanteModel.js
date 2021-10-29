@@ -34,7 +34,7 @@ class Visitante{
   }
 
   async buscarSenhaVisitante(){
-    let senha = await VisitanteModel.findOne({senha: this.body.senha});
+    let senha = await VisitanteModel.findOne({senha: this.body.visitante});
     return senha;
   }
 

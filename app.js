@@ -119,6 +119,13 @@ app.post('/tag', async function(req, res){
 //post para visitantes
 app.post('/visitantes/register', async function(req, res){
   try {
+    if(req.body.apagar === 'Apagar'){
+      const visitante = new Visitante();
+      let buscaVisitante = await visitante.buscarVisitante();
+      await visitante.apagarVisitante(buscaVisitante);
+      res.status('200').send(buscaVisitante);
+      return;
+    }
     let expira = new Date(Date.now() + req.body.min * 60 * 1000 + req.body.sec * 1000);
     let $reqBody = {
       senha: req.body.senha,
@@ -126,9 +133,6 @@ app.post('/visitantes/register', async function(req, res){
     };
     const visitante = new Visitante($reqBody);
     let buscaVisitante = await visitante.buscarVisitante();
-    if(buscaVisitante){
-      visitante.apagarVisitante(buscaVisitante);
-    }
     await visitante.criarVisitante();
     res.status('200').send(buscaVisitante);
   } catch (error) {

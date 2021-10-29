@@ -413,15 +413,45 @@ button{
   -webkit-user-select: none;
 }
 
+.time-text{
+  width: 250px;
+  display: flex;
+}
+
+.time-text small{
+  width: 50%;
+  font-weight: bold;
+  margin: 0;
+}
+
+.visitante-container{
+  position: relative;
+  width: 250px;
+  height: 120px;
+  margin: 0.75rem auto;
+}
+
 .slider{
   display: flex;
   align-items: center;
-  margin: 2rem auto;
-  height: 120px;
-  width: 200px;
+}
+
+.status{
+  text-align: center;
+}
+
+.slider, .status{
+  height: inherit;
+  width: inherit;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: .5s all ease;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .slider-min, .slider-sec{
@@ -455,7 +485,7 @@ button{
   text-align: center;
   font-size: 2rem;
   transition: transform 0.2s linear 0s;
-  color: #cccccc;
+  color: #eee;
 }
 
 .inner-slider .active{
@@ -469,11 +499,6 @@ button{
 }
 
 /*  */
-
-.status{
-  text-align: center;
-  margin: 2rem auto;
-}
 
 .status--senha{
   font-size: 3rem;

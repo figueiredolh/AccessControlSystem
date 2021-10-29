@@ -2,23 +2,31 @@
 <div class="section-1 abertura">
   <h1 class="section-1-titulo">Senha de Visitante</h1>
   <div class="div-btnAbertura abertura visitante">
-    <small style="margin-bottom: 0;">Selecione um intervalo de tempo e clique em Gerar</small>
-    <div class="slider">
-      <div class="slider-min">
-        <button class="slider-min--up">-</button>
-        <button class="slider-min--down">+</button>
-        <div class="inner-slider" id="min"></div>
+    <small class="visitante--small" style="margin-bottom: 0;">Selecione um intervalo de tempo e clique em Gerar</small>
+    <div style="margin: 2rem auto;">
+      <div class="visitante-container">
+        <div class="slider">
+          <div class="slider-min">
+            <button class="slider-min--up"><i class="fas fa-chevron-up"></i></button>
+            <button class="slider-min--down"><i class="fas fa-chevron-down"></i></button>
+            <div class="inner-slider" id="min"></div>
+          </div>
+            <span style="font-weight: bold;">:</span>
+          <div class="slider-sec">
+            <button class="slider-sec--up"><i class="fas fa-chevron-up"></i></button>
+            <button class="slider-sec--down"><i class="fas fa-chevron-down"></i></button>
+            <div class="inner-slider" id="sec"></div>
+          </div>
+        </div>
+        <div class="status">
+          <div class="status--senha"></div>
+          <div class="status--tempo"></div>
+        </div>
       </div>
-        <span style="font-weight: bold;">:</span>
-      <div class="slider-sec">
-        <button class="slider-sec--up">-</button>
-        <button class="slider-sec--down">+</button>
-        <div class="inner-slider" id="sec"></div>
+      <div class="time-text">
+        <small>Minutos</small>
+        <small>Segundos</small>
       </div>
-    </div>
-    <div class="status">
-      <div class="status--senha"></div>
-      <div class="status--tempo"></div>
     </div>
     <form class="form-visitante">
       <input type="hidden" name="_csrf" value="<%- csrfToken %>">

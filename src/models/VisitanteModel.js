@@ -28,9 +28,14 @@ class Visitante{
     this.visitor = await VisitanteModel.create(this.body);
   }
 
-  async buscarVisitante(){
+  async buscarVisitantes(){
     let busca = await VisitanteModel.find();
     return busca;
+  }
+
+  async buscarSenhaVisitante(){
+    let senha = await VisitanteModel.findOne({senha: this.body.senha});
+    return senha;
   }
 
   async apagarVisitante(visitante){

@@ -121,7 +121,7 @@ app.post('/visitantes/register', async function(req, res){
   try {
     if(req.body.apagar === 'Apagar'){
       const visitante = new Visitante();
-      let buscaVisitante = await visitante.buscarVisitante();
+      let buscaVisitante = await visitante.buscarVisitantes();
       await visitante.apagarVisitante(buscaVisitante);
       res.status('200').send(buscaVisitante);
       return;
@@ -132,9 +132,9 @@ app.post('/visitantes/register', async function(req, res){
       expiraEm: expira
     };
     const visitante = new Visitante($reqBody);
-    let buscaVisitante = await visitante.buscarVisitante();
     await visitante.criarVisitante();
-    res.status('200').send(buscaVisitante);
+    console.log(visitante.visitor);
+    res.status('200').send(visitante.visitor);
   } catch (error) {
     console.log(error)
   }
@@ -142,7 +142,7 @@ app.post('/visitantes/register', async function(req, res){
 
 app.get('/visitantes/api', async function(req, res){
   const visitante = new Visitante();
-  let buscaVisitante = await visitante.buscarVisitante();
+  let buscaVisitante = await visitante.buscarVisitantes();
   res.send(buscaVisitante);
 });
 

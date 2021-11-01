@@ -35,7 +35,7 @@
 <%- include('./includes/alertMessages') %>
 <script>
   //criação de websocket
-  const socket = new WebSocket('ws://localhost:3000/');
+  const socket = new WebSocket('ws://192.168.100.118:3000/');
   //callback para console
   socket.addEventListener('open', function(){
     console.log('Conectado ao servidor WS');

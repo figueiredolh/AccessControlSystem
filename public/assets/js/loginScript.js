@@ -1,21 +1,34 @@
-/* Cancelar envio do formulário caso haja algum campo do formulário vazio */
+/* form-Login */
+
 const divConteudo = document.querySelector('.conteudo');
-const formLogin = divConteudo.querySelector('form');
+const formLogin = divConteudo.querySelector('.form-login');
 const loginUsuario = formLogin.querySelector('#usuario');
 const loginSenha = formLogin.querySelector('#senha');
-const divAlert  = divConteudo.querySelector('#alert-div');
+const divAlert  = document.querySelector('#alert-div');
 
 formLogin.addEventListener('submit', function(event){
   if(!loginUsuario.value || !loginSenha.value){
     event.preventDefault();
-    criarAviso();
+    criarAviso('Campo e-mail e/ou usuário vazios');
   }
 });
 
-function criarAviso(){
+/* form-Visitante */
+
+const formVisitante = divConteudo.querySelector('.form-visitante');
+const senhaVisitante = formVisitante.querySelector('#senha-visitante');
+
+formVisitante.addEventListener('submit', function(event){
+  if(!senhaVisitante.value){
+    event.preventDefault();
+    criarAviso('Campo não preenchido');
+  }
+});
+
+function criarAviso(aviso){
   verificarAlert();
   /* const $div = document.createElement('div'); */
-  const $text = document.createTextNode('Campo e-mail e/ou usuário vazios');
+  const $text = document.createTextNode(aviso);
   divAlert.appendChild($text);
   divAlert.classList.add('alert');
   divAlert.classList.add('alert-danger');
@@ -31,10 +44,10 @@ function verificarAlert(){
 /* Senha de Visitante */
 
 const fieldsetDivs = document.querySelectorAll('.div-fieldset-div');
-const btnVisitante = document.querySelector('#visitante');
+const activeVisitante = document.querySelector('#visitante');
 const btnVoltar = document.querySelector('#voltar');
 
-btnVisitante.addEventListener('click', function(){
+activeVisitante.addEventListener('click', function(){
   active();
   this.style.visibility = 'hidden';
   verificarAlert();
@@ -42,7 +55,7 @@ btnVisitante.addEventListener('click', function(){
 
 btnVoltar.addEventListener('click', function(){
   active();
-  btnVisitante.style.visibility = 'visible';
+  activeVisitante.style.visibility = 'visible';
   verificarAlert();
 });
 

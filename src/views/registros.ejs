@@ -34,17 +34,15 @@
 </div>
 <%- include('./includes/alertMessages') %>
 <script>
-  //criação de websocket
   const socket = new WebSocket('ws://35.199.80.139/');
-  //callback para console
+
   socket.addEventListener('open', function(){
-    console.log('Conectado ao servidor WS');
     socket.send('Conectado');
   });
-  //retorno de mensagens
+
   socket.addEventListener('message', function(e){
+    if(e.data === 'ON') return;
     let ultimoRegistro = JSON.parse(e.data);
-    //console.log(ultimoRegistro);
     const $tbody = document.querySelector('.table-body');
     const $tr = document.createElement('tr');
     $tr.innerHTML = '<td data-label="Nome" class="registro">'+ ultimoRegistro.nome +'</td>'+
@@ -53,8 +51,7 @@
                     '<td data-label="Data" class="registro">'+ ultimoRegistro.data +'</td>'+
                     '<td> <a href="/registros/delete/'+ ultimoRegistro._id +'"><i class="fas fa-trash-alt"></i></a></td>';
     $tr.classList.add('tr-ws');
-    $tbody.prepend($tr);
-    
+    $tbody.prepend($tr);   
     const $section = document.querySelector('.section');
     const $divAlert = $section.querySelector('.alert');
     if($divAlert) $section.removeChild($divAlert);

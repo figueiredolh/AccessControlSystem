@@ -32,19 +32,6 @@ appWs.ws('/abertura', function(ws, req) {
   };
 });
 
-app.post('/abertura', function(req, res){
-  wsBroadcastESP("ON");
-  /* res.redirect('back'); */
-  console.log(req.body.abrir);
-  res.status(200).send('OK');
-});
-
-let wsBroadcastESP = (str)=>{
-  aWss.clients.forEach(function (client) {
-    client.send(str);
-  });
-}
-
 //rota websockets para registros
 appWs.ws('/', function(ws, req) {
   console.log('Websocket aberto em registro.ejs');
@@ -57,6 +44,12 @@ appWs.ws('/', function(ws, req) {
 let wsBroadcast = (obj)=>{
   aWss.clients.forEach(function (client) {
     client.send(JSON.stringify(obj));
+  });
+}
+
+let wsBroadcastESP = (str)=>{
+  aWss.clients.forEach(function (client) {
+    client.send(str);
   });
 }
 
@@ -116,6 +109,20 @@ app.post('/tag', async function(req, res){
 }
 );
 
+app.post('/abertura', async function(req, res){
+  let objRegistro = {
+    nome: 'Abertura Remota*', 
+    tag: '-',
+    status: 'Autorizado',
+    data: formatarData(new Date())
+  }
+  let registro = new Registro(objRegistro);
+  await registro.criarRegistro();
+  wsBroadcast(registro.register);
+  wsBroadcastESP("ON");
+  res.status(200).send('OK');
+});
+
 //post para visitantes
 app.get('/visitantes/api', async function(req, res){
   const visitante = new Visitante();
@@ -152,6 +159,15 @@ app.post('/visitantes/enter', async function(req, res){
     res.status(401).redirect('back');
     return;
   }
+  let objRegistro = {
+    nome: 'Visitante*', 
+    tag: senha.senha.toUpperCase() + ' (senha)',
+    status: 'Autorizado',
+    data: formatarData(new Date())
+  }
+  let registro = new Registro(objRegistro);
+  await registro.criarRegistro();
+  wsBroadcast(registro.register);
   wsBroadcastESP("ON");
   res.status(200).redirect('back');
 });
@@ -187,10 +203,6 @@ function verificarHorario(obj, date){
 
   return verificarDiaSemana && verificarHora;
 }
-
-//ESP 32 - HTTP POST
-/* const esp32 = require('./src/controllers/esp32Controller');
-app.post('/tag', esp32.postEsp32Client); */
 
 //Setando arquivos estáticos
 const path = require('path');

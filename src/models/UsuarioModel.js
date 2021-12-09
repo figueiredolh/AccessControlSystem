@@ -99,7 +99,7 @@ class Usuario{
     //verificar se nome, email e senha permanecem inalterados
     this.user = await UsuarioModel.findById(id);
     if(this.user.nome === this.body.nome && this.user.tag === this.body.tag) return this.errors.push('Dados inalterados');
-    this.user = await userModel.findOneAndUpdate(id, this.body, {new: true});
+    this.user = await UsuarioModel.findOneAndUpdate({_id: id}, this.body, {new: true});
   }
 
   /* Apagar Usuario */

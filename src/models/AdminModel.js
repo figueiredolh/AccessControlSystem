@@ -130,7 +130,7 @@ class Admin{
     if(this.admin.nome === this.body.nome && this.admin.email === this.body.email && bcrypt.compareSync(this.body.senha, this.admin.senha)) return this.errors.push('Dados inalterados');
 
     this.criarHash();
-    this.admin = await AdminModel.findOneAndUpdate(id, this.body, {new: true});
+    this.admin = await AdminModel.findOneAndUpdate({_id: id}, this.body, {new: true});
   }
 
   /* Apagar Admin */

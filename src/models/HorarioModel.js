@@ -131,7 +131,7 @@ class Horario{
     //verificar se nome, email e senha permanecem inalterados
     this.schedule = await HorarioModel.findById(id);
     if(this.schedule.nome === this.body.nome && this.schedule.tag === this.body.tag && this.schedule.diaEntrada === this.body.diaEntrada && this.schedule.diaSaida === this.body.diaSaida && this.schedule.horarioEntrada === this.body.horarioEntrada && this.schedule.horarioSaida === this.body.horarioSaida) return this.errors.push('Dados inalterados');
-    this.schedule = await HorarioModel.findOneAndUpdate(id, this.body, {new: true});
+    await HorarioModel.findOneAndUpdate({_id: id}, this.body, {new: true});
   }
 
   /* Apagar Horario */

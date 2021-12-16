@@ -28,10 +28,10 @@
         <% }); %>
       </tbody>
     </table>
+  </div>
   <% } else{ %>
     <p class="alert" style='font-size: 1.2rem;'>Ainda não existem registros</p>
   <% } %>
-</div>
 <%- include('./includes/alertMessages') %>
 <script>
   const socket = new WebSocket('ws://35.199.80.139/');

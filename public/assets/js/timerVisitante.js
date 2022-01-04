@@ -186,7 +186,7 @@ fetch('/visitantes/api')
 
 formVisitante.addEventListener('submit', function(e){
   if(apagar){
-    limparCronometro();
+    pararCronometro();
     let data = new URLSearchParams();
     data.append('apagar', 'Apagar');
 
@@ -272,12 +272,12 @@ function iniciarCronometro(){
     ms -= 1000;
     statusTempo.textContent = tratarMs();
     if(ms <= 0){
-      limparCronometro();
+      pararCronometro();
     }
   }, 1000);
 }
 
-function limparCronometro(){
+function pararCronometro(){
   clearInterval(intervalo);
 }
 
@@ -288,12 +288,12 @@ function tratarMs(){
   if(ms < S){
     let min = adicionarDigito(0);
     let sec = adicionarDigito(0);
-    return `${min} : ${sec}`
+    return `${min} : ${sec}`;
   }
   else{
     let min = adicionarDigito(parseInt(ms / M));
     let sec = adicionarDigito(parseInt((ms - min * M)/S));
-    return `${min} : ${sec}`
+    return `${min} : ${sec}`;
   }
 }
 

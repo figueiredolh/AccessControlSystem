@@ -42,13 +42,11 @@ de controle propriamente dito. O sistema em questão possui as seguintes funcion
 <li><b>Usuários RFID:</b> Permite a consulta, a adição, a edição e a exclusão de usuários com
 acesso rfid;</li>
 <li><b>Administradores:</b> Permite a consulta, a adição, a edição e a exclusão de
-administradores do sistema. Obs.: O sistema precisa ter ao menos um administrador
-cadastrado, sendo negada a sua exclusão neste caso;</li>
+administradores do sistema</li>
 <li><b>Registros:</b> Permite a consulta e a exclusão dos registros dos usuários, baseados no dia
 e horário de acesso.</li>
 <li><b>Horários de Acesso:</b> Permite a consulta, a adição, a edição e a exclusão de usuários rfid
-com limitação de horários e dias de acesso. Obs.: Um usuário rfid já cadastrado em
-Usuários RFID tem seu cadastro negado e vice-versa.</li>
+com limitação de horários e dias de acesso</li>
 <li><b>Senha de Visitante:</b> Permite excluir e gerar senhas de 6 caracteres - letras e números -
 para o acesso de visitantes, com o tempo limite de 30 minutos. Após esse período, será
 feita automaticamente sua exclusão.</li>

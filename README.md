@@ -10,7 +10,7 @@ energética e conforto de uma habitação.</p>
 <p>O projeto em questão visa desenvolver um sistema 
 de controle de acesso RFID para ambientes residenciais utilizando
 componentes de baixo custo, em que se utiliza uma interface web para gerenciamento. Além disso, o projeto conta com o desenvolvimento do hardware embarcado,
-que se encontra neste repositório: <a href="#">Repositório Hardware/ESP32</a>.</p>
+que se encontra neste repositório: <a href="https://github.com/figueiredolh/AccessControlSystem-Hardware" target="_blank">Repositório Hardware/ESP32</a>.</p>
 
 <h2>Funcionamento Básico do Sistema</h2>
 <p>O projeto tem como objetivo fazer a integração de

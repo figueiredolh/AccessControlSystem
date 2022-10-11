@@ -51,3 +51,7 @@ com limitação de horários e dias de acesso</li>
 para o acesso de visitantes, com o tempo limite de 30 minutos. Após esse período, será
 feita automaticamente sua exclusão.</li>
 </ul>
+
+<footer>
+  <h4>Mais detalhes da construção do projeto podem ser vistas <a href="https://drive.google.com/file/d/19L5Q-QASPblPZDZgEBwYl77QZ4fz-9DV/view?usp=sharing" target="_blank">aqui</a></h4>
+</footer>
